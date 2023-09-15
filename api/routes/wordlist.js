@@ -5,19 +5,8 @@ const multer = require('multer');
 const csv = require('csv-parser');
 const fs = require('fs');
 
-//set up Multer to process file uploads
-// const upload = multer({
-//     // storage: multer.memoryStorage(),
-//     dest: './uploads/',
-//     fileFilter: (req, file, cb) => {
-//       if (path.extname(file.originalname) !== '.csv') {
-//         return cb(new Error('Must be a csv file.'));
-//       }
-//       cb(null, true);
-//     },
-//   });
-
 const upload = multer({ dest: './uploads/'});
+const dataStorage = require('../dataStorage.js');
 
 //CREATE
 router.post("/", upload.single('csvFile'), async (req, res) => {
@@ -31,13 +20,11 @@ router.post("/", upload.single('csvFile'), async (req, res) => {
         fs.createReadStream(filePath)
             .pipe(csv( ["Word"] ))
             .on('data', (row) => {
-                // console.log(row["Word"]);
                 let rowValue = row["Word"];
                 arr.push(rowValue);
 
             })
             .on('end', async () => {
-                // res.status(200).json(arr);
                 const newWordlist = new Wordlist({
                     name: name,
                     desc: desc,
@@ -54,8 +41,36 @@ router.post("/", upload.single('csvFile'), async (req, res) => {
     }
 });
 
-//EDIT
+//GET ALL -- return the array of specified wordlist and set it as current wordlist
+router.get("/:id", async (req, res) => {
+    const {id} = req.params;
+    try {
+        const wordlist = await Wordlist.findById(id);
+        if (!wordlist) {
+            return res.status(404).json({message: "Wordlist not found."});
+        }
+        const wordsArr = wordlist.words;
+        // console.log(wordsArr);
+        // curWordsArr = wordsArr;
+        dataStorage.setCurWordlist(wordsArr);
+        // console.log(dataStorage.getCurWordlist);
+        res.json(wordsArr);
+    } catch (err) {
+        console.error('Error fetching wordlist:', err);
+        res.status(500).json(err);
+    }
+    
+})
+
+
+
+
+
+
+
 
 //GET ALL?
+
+
 
 module.exports = router;

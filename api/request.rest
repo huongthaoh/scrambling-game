@@ -6,3 +6,11 @@ content-type: application/json
     "words":["wordA", "wordB", "wordC"],
     "desc": "this is a desc!"
 }
+
+###
+
+GET http://localhost:3000/api/wordlist/6503cc2e11a2410e548faa12
+
+###
+
+GET http://localhost:3000/api/word/getWord/

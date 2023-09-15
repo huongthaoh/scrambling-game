@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 function Game() {
     const [wordlist, setWordlist] = useState([]);
@@ -21,16 +21,18 @@ function Game() {
             randomIndex = Math.floor(Math.random() * arr.length);
         } while (usedWords.has(randomIndex));
         usedWords.add(randomIndex);
-        console.log(usedWords);
-        // return (arr[randomIndex]);
+        // console.log(usedWords);
+        
         setCurWord(arr[randomIndex]);
+        return (arr[randomIndex]);
+        // console.log(curWord);
         // scramble();
         }
     
 
     const scramble = () => {
-        wordRandom();
-        console.log(curWord);
+        // wordRandom();
+        // console.log(curWord);
         let str = curWord;
         let strarray = str.split('');           
         var i,j,k
@@ -42,7 +44,17 @@ function Game() {
         }
         let scrambledWord = strarray.join('');
         setScrambled(scrambledWord);  
-        console.log(scrambledWord);
+        // console.log(scrambledWord);
+        return scrambledWord;
+    }
+
+    const round = () => {
+        console.log(wordRandom());
+        console.log(curWord);
+        console.log(scramble());
+        console.log(scrambled);
+
+
     }
 
     /*
@@ -55,7 +67,7 @@ function Game() {
   return (
     <div>
         {/* <button onClick = {wordRandom}><h1>CHOOSE WORD</h1></button> */}
-        <button onClick = {scramble}><h1>SCRAMBLE</h1></button>
+        <button onClick = {round}><h1>SCRAMBLE</h1></button>
         {/* <p>{curWord} {scrambled}</p>  */}
 
         {gameOver && <p>Game Over</p>}

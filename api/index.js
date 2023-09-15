@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose');
 
 const wordlistRoute = require('./routes/wordlist.js');
+const wordRoute = require('./routes/word.js')
 
 const app = express()
 dotenv.config();
@@ -12,7 +13,10 @@ const port = process.env.PORT || 3000;
 
 const connect = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB);
+        await mongoose.connect(process.env.MONGODB, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         console.log("DB connected.");
     } catch (error) {
         console.error("Failing to connect to DB: ", error);
@@ -22,7 +26,9 @@ const connect = async () => {
 //middlewares
 app.use(cors());
 app.use(express.json());
+
 app.use("/api/wordlist", wordlistRoute);
+app.use('/api/word', wordRoute);
 
 app.listen(port, ()=> {
     connect();
