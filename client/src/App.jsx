@@ -1,6 +1,8 @@
 
 import { Routes } from 'react-router-dom'
 import './App.css'
+import CreateWordlist from './pages/CreateWordlist'
+import Game from './pages/Game'
 
 
 function App() {
@@ -8,9 +10,12 @@ function App() {
 
   return (
     <div className="">
-      <Routes>
-
-      </Routes>
+      <h1>hello</h1>
+      <CreateWordlist></CreateWordlist>
+      <Game></Game>
+      {/* <Routes>
+        
+      </Routes> */}
     </div>
   )
 }

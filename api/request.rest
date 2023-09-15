@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/wordlist/ 
+content-type: application/json
+
+{
+    "name": "sample",
+    "words":["wordA", "wordB", "wordC"],
+    "desc": "this is a desc!"
+}
