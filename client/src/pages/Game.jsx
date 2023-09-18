@@ -1,76 +1,86 @@
 import {useEffect, useState} from 'react'
+import SearchIcon from '@mui/icons-material/Search';
 
 function Game() {
-    const [wordlist, setWordlist] = useState([]);
-    const [gameOver, setGameOver] = useState(false); 
-    const [curWord, setCurWord] = useState("");
-    const [scrambled, setScrambled] = useState("");
-    // const [usedWords, setUsedWords] = useState(new Set());
-
-    let arr = ["wordlist", "jerry", "sharkie", "mika", "duduong"];
-    let usedWords = new Set();
-
-    const wordRandom = () => {
-        if (usedWords.size == arr.length) {
-            setGameOver(true);
-            console.log("game over");
-            return;
-        }
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * arr.length);
-        } while (usedWords.has(randomIndex));
-        usedWords.add(randomIndex);
-        // console.log(usedWords);
-        
-        setCurWord(arr[randomIndex]);
-        return (arr[randomIndex]);
-        // console.log(curWord);
-        // scramble();
-        }
+    const [fetched, setFetched] = useState(false);
+    const [word, setWord] = useState("");
+    const [userInput, setUserInput] = useState("");
+    const [correct, setCorrect] = useState(false);
     
-
-    const scramble = () => {
-        // wordRandom();
-        // console.log(curWord);
-        let str = curWord;
-        let strarray = str.split('');           
-        var i,j,k
-        for (i = 0; i < strarray.length; i++) {
-            j = Math.floor(Math.random() * i)
-            k = strarray[i]
-            strarray[i] = strarray[j]
-            strarray[j] = k
+    const fetchWordlist = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/api/word/getWord/");
+            if (response.ok) {
+                const data = await response.json();
+                setWord(data);
+                setFetched(true);
+            } else {
+                console.error('Response not OK:', response.statusText);
+            }
+        } catch (err) {
+            console.error("Fail to fetch word: ", err);
         }
-        let scrambledWord = strarray.join('');
-        setScrambled(scrambledWord);  
-        // console.log(scrambledWord);
-        return scrambledWord;
     }
 
-    const round = () => {
-        console.log(wordRandom());
-        console.log(curWord);
-        console.log(scramble());
-        console.log(scrambled);
+    const fetchApi = () => {
+        setFetched(true);
+    }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch("http://localhost:3000/api/word/verify/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", 
+                },
+                body: JSON.stringify({ userInput }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.result === true) {
+                    setCorrect(true)
+                    // console.log("smart");
+                } else {
+                    // console.log("dumb dumb");
+                }
+            } else {
+                console.error('Response not OK:', response.statusText);
+            }
+        } catch (err) {
+            console.error("Fail to verify word: ", err);
+        }
+        
 
     }
 
-    /*
-    * Game loop: prompts user to pick a wordlist (user-made or default)
-    * Each round, user can either get auto generated word or from an API. In the case of auto generated, this will be randomly picked from the specified wordlist.
-    * Scramble word. User guess until time runs out or they give up.
-    * 
-    * Game ends (user loses/run out of words), return statistics.
-    */
   return (
-    <div>
-        {/* <button onClick = {wordRandom}><h1>CHOOSE WORD</h1></button> */}
-        <button onClick = {round}><h1>SCRAMBLE</h1></button>
-        {/* <p>{curWord} {scrambled}</p>  */}
+    <div className='h-full'>
+        {fetched ? (
+            <div className="flex flex-col w-full h-full">
+                <div className='flex-grow flex justify-center items-center border-b-2 border-gray-600 bg-yellow-50'>
+                    <p className='text-6xl text-center tracking-widest'>{word}</p>
+                </div>
 
-        {gameOver && <p>Game Over</p>}
+                <div className='flex items-center justify-center h-20 rounded-b-2xl bg-blue-300'>
+                        <input className='w-4/5 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg' type="text" value={userInput} onChange = {(e) => setUserInput(e.target.value)}/>
+                        <button className = 'h-10 w-14 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' onClick={handleSubmit}> <SearchIcon/> </button>
+                   
+                </div>
+            </div>
+        ) : (
+            //fetch a scrambled word in wordlist or via api
+            <div className="flex justify-around items-center">
+                <div>
+                    <button onClick = {fetchWordlist}>from wordlist</button>
+                </div>
+                <div>
+                    <button onClick = {fetchApi}>from api</button>
+                </div>
+            </div>
+        )}
+        
+
     </div>
   );
 }
