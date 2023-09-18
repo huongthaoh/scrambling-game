@@ -2,6 +2,7 @@ var curWordlist = [];
 var usedWords = new Set();
 var curWord = "";
 var curScrambled = "";
+var score = 0;
 
 function setCurWord(word) {
     curWord = word;
@@ -12,7 +13,11 @@ function getCurWord() {
 }
 
 function verifyWord(scrWord) {
-    return (scrWord.trim().toLowerCase() == curWord.trim().toLowerCase());
+    if (scrWord.trim().toLowerCase() == curWord.trim().toLowerCase()) {
+        ++score;
+        return true;
+    };
+    return false;
 }
 
 function scrambleWord(str) {

@@ -5,7 +5,7 @@ function Game() {
     const [fetched, setFetched] = useState(false);
     const [word, setWord] = useState("");
     const [userInput, setUserInput] = useState("");
-    const [correct, setCorrect] = useState(false);
+    const [correct, setCorrect] = useState(null);
     
     const fetchWordlist = async () => {
         try {
@@ -40,10 +40,14 @@ function Game() {
                 const data = await response.json();
                 if (data.result === true) {
                     setCorrect(true)
-                    // console.log("smart");
+                    // alert("smart");
                 } else {
-                    // console.log("dumb dumb");
+                    setCorrect(false);
+                    console.log("dumb dumb");
                 }
+                setTimeout(() => {
+                    setCorrect(null); // Reset to null after 0.5 second
+                }, 500);
             } else {
                 console.error('Response not OK:', response.statusText);
             }
@@ -56,29 +60,49 @@ function Game() {
 
   return (
     <div className='h-full'>
-        {fetched ? (
+        {/* {fetched ? ( */}
             <div className="flex flex-col w-full h-full">
                 <div className='flex-grow flex justify-center items-center border-b-2 border-gray-600 bg-yellow-50'>
-                    <p className='text-6xl text-center tracking-widest'>{word}</p>
+                    {fetched ? (
+                        <p className={`text-6xl text-center tracking-widest ${
+                            correct === false 
+                            ? 'text-red-500 animate-shake' 
+                            : correct === true
+                            ? 'text-green-600 animate-slide'
+                            : ''}`}>
+                            {word}
+                        </p>
+                    ) : (
+
+                    <div className="flex justify-around items-center">
+                        <div>
+                            <button onClick = {fetchWordlist}>from wordlist</button>
+                        </div>
+                        <div>
+                            <button onClick = {fetchApi}>from api</button>
+                        </div>
+                    </div>
+                    )}
                 </div>
+                    
 
                 <div className='flex items-center justify-center h-20 rounded-b-2xl bg-blue-300'>
                         <input className='w-4/5 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg' type="text" value={userInput} onChange = {(e) => setUserInput(e.target.value)}/>
                         <button className = 'h-10 w-14 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' onClick={handleSubmit}> <SearchIcon/> </button>
-                   
                 </div>
             </div>
-        ) : (
-            //fetch a scrambled word in wordlist or via api
-            <div className="flex justify-around items-center">
+        {/* ) : ( */}
+            
+            {/* <div className="flex justify-around items-center">
                 <div>
                     <button onClick = {fetchWordlist}>from wordlist</button>
                 </div>
                 <div>
                     <button onClick = {fetchApi}>from api</button>
                 </div>
-            </div>
-        )}
+            </div> */}
+        {/* )} */}
+        
         
 
     </div>

@@ -63,14 +63,4 @@ router.get("/:id", async (req, res) => {
 })
 
 
-
-
-
-
-
-
-//GET ALL?
-
-
-
 module.exports = router;

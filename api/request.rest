@@ -13,6 +13,10 @@ GET http://localhost:3000/api/wordlist/6503cc2e11a2410e548faa12
 
 ###
 
+GET http://localhost:3000/api/wordlist/6508b7f4080f67cc7c52947e
+
+###
+
 GET http://localhost:3000/api/word/getWord/
 
 ###
