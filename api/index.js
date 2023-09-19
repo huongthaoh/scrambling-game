@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const wordlistRoute = require('./routes/wordlist.js');
 const wordRoute = require('./routes/word.js')
+const gameRoute = require('./routes/game.js')
 
 const app = express()
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.json());
 
 app.use("/api/wordlist", wordlistRoute);
 app.use('/api/word', wordRoute);
+app.use('/api/game', gameRoute);
 
 app.listen(port, ()=> {
     connect();

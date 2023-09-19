@@ -4,6 +4,14 @@ var curWord = "";
 var curScrambled = "";
 var score = 0;
 
+function restart() {
+    curWord = "";
+    curScrambled = "";
+    usedWords.clear();
+    // curWordlist = [];
+    score = 0;
+}
+
 function setCurWord(word) {
     curWord = word;
 }
@@ -18,6 +26,10 @@ function verifyWord(scrWord) {
         return true;
     };
     return false;
+}
+
+function getScore() {
+    return score;
 }
 
 function scrambleWord(str) {
@@ -58,4 +70,4 @@ function recycle() {
     usedWords.clear();
 }
 
-module.exports = { setCurWord, getCurWord, verifyWord, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };
+module.exports = { restart, setCurWord, getCurWord, verifyWord, getScore, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };

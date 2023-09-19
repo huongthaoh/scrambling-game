@@ -26,3 +26,6 @@ content-type: application/json
 {
    "userInput": "sharkie"
 }
+
+### display score
+GET http://localhost:3000/api/word/score

@@ -20,9 +20,9 @@ function App() {
 
   return (
     // <div className = "relative max-w-2xl h-96 bg-red-400">
-    <div className = "min-h-screen flex justify-center items-center">
+    <div className = "min-h-screen h-screen flex justify-center items-center">
       {/* <CreateWordlist /> */}
-      <div className="2xl:w-1/2 md:w-3/5 sm:w-full h-96 flex rounded-2xl flex-col shadow-md shadow-gray-400">
+      <div className="2xl:w-1/2 md:w-3/5 sm:w-full h-1/2 flex rounded-2xl flex-col shadow-md shadow-gray-400">
       
       <div className='flex px-5 justify-end items-center bg-pink-400 border-x-2 border-t-2 border-gray-600 rounded-t-2xl h-12 w-full'>
         <h2 className='text-center text-lg font-semibold flex-grow'>{text}</h2>

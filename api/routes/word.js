@@ -8,7 +8,7 @@ router.get("/getWord", async (req, res) => {
     try {
         // console.log(dataStorage.getCurWordlist());
         const arr = dataStorage.getCurWordlist();
-        console.log(arr);
+        // console.log(arr);
         if (arr.length == 0) {
             res.status(400).json("Empty wordlist.")
             return
@@ -27,9 +27,9 @@ router.get("/getWord", async (req, res) => {
         dataStorage.addUsedWord(randomIndex);
         let curWord = arr[randomIndex];
         dataStorage.setCurWord(curWord);
-        console.log(curWord);
+        console.log("Current word is: ", curWord);
         let scrambledWord = dataStorage.scrambleWord(curWord);
-        console.log(scrambledWord);
+        console.log("Scrambled word is: ", scrambledWord);
         res.status(200).json(scrambledWord);
     } catch (err) {
         console.error('Error fetching word:', err);
@@ -48,5 +48,14 @@ router.post("/verify", (req, res) => {
     }
 })
 
+router.get("/score", (req, res) => {
+    try {
+        const score = dataStorage.getScore();
+        res.status(200).json(score);
+    } catch (err) {
+        console.error("Error retrieving score", err);
+        res.status(500).json(err);
+    }
+})
 
 module.exports = router;
