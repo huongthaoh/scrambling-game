@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const dataStorage = require('../dataStorage.js');
 
+router.post("/sendScore", (req, res) => {
+    const {score} = req.body;
+    const scoreInt = parseInt(score, 10);
+
+    try {
+        const score = dataStorage.setScore(scoreInt);
+        res.status(200).json(score);
+    } catch (err) {
+        console.error("Error retrieving score", err);
+        res.status(500).json(err);
+    }
+})
+
 router.get("/score", (req, res) => {
     try {
         const score = dataStorage.getScore();

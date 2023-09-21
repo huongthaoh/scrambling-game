@@ -13,9 +13,14 @@ function GameOver() {
     const navigate = useNavigate();
     
     useEffect(() => {
-        fetchScore();
-        fetchHighScore();
+        displayResult();
+        
     }, []);
+
+    const displayResult = async () => {
+        await fetchScore();
+        await fetchHighScore();
+    }
 
     const fetchScore = async () => {
         try {
@@ -23,6 +28,7 @@ function GameOver() {
             if (response.ok) {
                 const data = await response.json();
                 setScore(data);
+                
             }
         } catch (err) {
             console.error("Fail to fetch score: ", err);
@@ -35,6 +41,7 @@ function GameOver() {
             if (response.ok) {
                 const data = await response.json();
                 setHighScore(data);
+                
             }
         } catch (err) {
             console.error("Fail to fetch high score: ", err);
@@ -54,17 +61,17 @@ function GameOver() {
 
   return (
     <div className='flex flex-col w-full h-full'>
-        <div className="mx-auto my-auto flex flex-col h-44 w-72 justify-center items-center rounded-xl border-2 border-gray-600 bg-pink-200">
+        <div className="mx-auto my-auto flex flex-col md:h-44 md:w-72 p-5 justify-center items-center rounded-xl border-2 border-gray-600 bg-pink-200">
 
             {score > highScore ? (
                 <div> 
-                    <p className='text-center text-xl font-semibold mb-3'>You set a new record of <span className="font-bold text-pink-600">{score}</span> {score > 1 ? "words" : "word"} solved!</p>
-                    <p className='text-center text-lg font-normal mb-3'>Last highest score: {highScore}</p>
+                    <p className='text-center md:text-xl font-semibold mb-3'>You set a new record of <span className="font-bold text-pink-600">{score}</span> {score > 1 ? "words" : "word"} solved!</p>
+                    <p className='text-center md:text-lg font-normal mb-3'>Last highest score: {highScore}</p>
                 </div>
             ) : (
                 <div>
-                    <p className='text-center text-xl font-semibold mb-3'>You solved <span className="font-bold text-pink-600">{score}</span> {score > 1 ? "words" : "word"}</p>
-                    <p className='text-center text-lg font-normal mb-3'>Current highest score: {highScore}</p>
+                    <p className='text-center md:text-xl font-semibold mb-3'>You solved <span className="font-bold text-pink-600">{score}</span> {score > 1 ? "words" : "word"}</p>
+                    <p className='text-center md:text-lg font-normal mb-3'>Current highest score: {highScore}</p>
                 </div>
             )} 
             

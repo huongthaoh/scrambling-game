@@ -32,21 +32,31 @@ router.get("/getWord", async (req, res) => {
         console.log("Scrambled word is: ", scrambledWord);
         res.status(200).json(scrambledWord);
     } catch (err) {
-        console.error('Error fetching word:', err);
+        console.error('Error fetching scrambled word:', err);
         res.status(500).json(err);
     }
 })
 
-router.post("/verify", (req, res) => {
-    const {userInput} = req.body;
+router.get('/getAnswer', async (req, res) => {
     try {
-        const result = dataStorage.verifyWord(userInput);
-        res.status(200).json({result});
+        const ans = dataStorage.getCurWord();
+        return res.status(200).json(ans);
     } catch (err) {
-        console.error("Error verifying word", err);
+        console.error("Error fetching original word: ", err);
         res.status(500).json(err);
     }
 })
+
+// router.post("/verify", (req, res) => {
+//     const {userInput} = req.body;
+//     try {
+//         const result = dataStorage.verifyWord(userInput);
+//         res.status(200).json({result});
+//     } catch (err) {
+//         console.error("Error verifying word", err);
+//         res.status(500).json(err);
+//     }
+// })
 
 
 

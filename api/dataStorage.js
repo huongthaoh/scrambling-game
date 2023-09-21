@@ -20,12 +20,16 @@ function getCurWord() {
     return curWord;
 }
 
-function verifyWord(scrWord) {
-    if (scrWord.trim().toLowerCase() == curWord.trim().toLowerCase()) {
-        ++score;
-        return true;
-    };
-    return false;
+// function verifyWord(scrWord) {
+//     if (scrWord.trim().toLowerCase() == curWord.trim().toLowerCase()) {
+//         ++score;
+//         return true;
+//     };
+//     return false;
+// }
+
+function setScore(s) {
+    score = s;
 }
 
 function getScore() {
@@ -34,7 +38,9 @@ function getScore() {
 
 function getHighscore() {
     const cur = highScore;
-    if (score > cur) highScore = score;
+    if (score > cur) {
+        highScore = score;
+    }
     return cur;
 }
 
@@ -76,4 +82,4 @@ function recycle() {
     usedWords.clear();
 }
 
-module.exports = { restart, setCurWord, getCurWord, verifyWord, getScore, getHighscore, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };
+module.exports = { restart, setCurWord, getCurWord, setScore, getScore, getHighscore, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };
