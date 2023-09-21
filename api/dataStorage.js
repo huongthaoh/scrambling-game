@@ -3,12 +3,12 @@ var usedWords = new Set();
 var curWord = "";
 var curScrambled = "";
 var score = 0;
+var highScore = 0;
 
 function restart() {
     curWord = "";
     curScrambled = "";
     usedWords.clear();
-    // curWordlist = [];
     score = 0;
 }
 
@@ -30,6 +30,12 @@ function verifyWord(scrWord) {
 
 function getScore() {
     return score;
+}
+
+function getHighscore() {
+    const cur = highScore;
+    if (score > cur) highScore = score;
+    return cur;
 }
 
 function scrambleWord(str) {
@@ -70,4 +76,4 @@ function recycle() {
     usedWords.clear();
 }
 
-module.exports = { restart, setCurWord, getCurWord, verifyWord, getScore, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };
+module.exports = { restart, setCurWord, getCurWord, verifyWord, getScore, getHighscore, scrambleWord, setCurWordlist, getCurWordlist, addUsedWord, isUsed,outOfWords, recycle };

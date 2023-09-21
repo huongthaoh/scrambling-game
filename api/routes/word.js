@@ -48,14 +48,6 @@ router.post("/verify", (req, res) => {
     }
 })
 
-router.get("/score", (req, res) => {
-    try {
-        const score = dataStorage.getScore();
-        res.status(200).json(score);
-    } catch (err) {
-        console.error("Error retrieving score", err);
-        res.status(500).json(err);
-    }
-})
+
 
 module.exports = router;
