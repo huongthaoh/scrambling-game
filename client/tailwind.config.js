@@ -12,6 +12,8 @@ export default {
         shake: 'shake 0.5s ease-in-out',
        
         slide: 'slide 0.5s ease-in-out forwards',
+
+        scroll: 'shuffle 2s infinite steps(10)',
       },
       keyframes: {
         shake: {
@@ -23,13 +25,21 @@ export default {
         slide: {
           '0%': {
             opacity: '1',
-            transform: 'translateY(0%)', // Initial position
+            transform: 'translateY(0%)', 
           },
           '100%': {
             opacity:'0',
-            transform: 'translateY(-100%)', // Final position (off-screen)
+            transform: 'translateY(-100%)',
           },
         },
+        shuffle: {
+          "0%": {
+            transform: "translateY(0px)",
+          },
+          "100%": {
+            transform: "translateY(-384px)",
+          }
+        }
       },
     },
   plugins: [],

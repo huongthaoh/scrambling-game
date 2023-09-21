@@ -47,7 +47,7 @@ function Game() {
             if (response.ok) {
                 const data = await response.json();
                 setWord(data);
-                console.log(word);
+                
             } else {
                 console.error('Response not OK:', response.statusText);
             }
@@ -61,8 +61,9 @@ function Game() {
             const response = await fetch("http://localhost:3000/api/word/getAnswer/");
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
                 setAnswer(data);
-                console.log(answer);
+                
             } else {
                 console.error('Response not OK:', response.statusText);
             }
@@ -110,8 +111,6 @@ function Game() {
         if (correct === true) {
             setTimeout(() => {
                 getNewWord();
-                // setUserInput("");
-                
                 setTimeout(() => {
                     setCorrect(null);
                     console.log(times);
@@ -157,26 +156,24 @@ function Game() {
        
     <div className="flex flex-col w-full h-full">
 
-        <div className='flex-grow flex justify-center items-center border-b-2 border-gray-600 bg-yellow-50'>
+        <div className='w-full flex-grow flex justify-center items-center border-b-2 border-gray-600 bg-yellow-50'>
             
 
         {round ? (
-            <div >
+            <div className='w-full flex justify-center items-center'>
             {!endRound ? (
                 <div>
                 {displayHint ? (
-                    <div className='flex flex-col h-44 w-96 border-b-2 border-x-2 border-gray-600 rounded-xl bg-pink-200'>
+                    <div className='md:h-44 md:w-96 mx-5 h-4/6 border-b-2 border-x-2 border-gray-600 rounded-xl bg-pink-200'>
                     
-                    <div className='w-full h-10 flex justify-between items-center py-1 px-2 bg-yellow-300 rounded-t-xl border-y-2 border-gray-600'>
+                    <div className='w-full h-10 flex justify-between items-center px-3  bg-yellow-300 rounded-t-xl border-y-2 border-gray-600'>
                         <p className='font-semibold '>a definition of the word</p>
                         <p className = "hover:cursor-pointer" onClick = {closeHint}>{< CloseIcon />}</p>
                     </div>
                     <p className='mx-3 my-2'>{hint}</p>
                     
           
-                    {/* <p className='mt-2 text-center text-md font-semibold mb-3'>a definition of the word</p>
-                    <p>{hint}</p>
-                    <button className='w-20 py-1 m-2 border-2 border-gray-600 rounded-md bg-blue-300' onClick = {closeHint}>resume</button> */}
+                   
                     
                     </div>
                 ) : (
@@ -206,9 +203,9 @@ function Game() {
             </div>
         ) : (
             
-            <div className='flex flex-col h-44 w-72 py-2 px-5 justify-center items-center rounded-xl border-2 border-gray-600 bg-orange-200'>
+            <div className='flex flex-col h-44 md:w-72 w-64 py-2 px-5 justify-center items-center rounded-xl border-2 border-gray-600 bg-orange-200'>
                 
-                <p className='text-center text-md font-semibold mb-3'>how many words per round would you like to play?</p>
+                <p className='text-center md:text-md font-semibold mb-3'>set words per round</p>
                 <form className = "flex flex-col items-center" onSubmit = {beginGame} >
                     <input 
                         className='py-1 px-2 border-2 border-gray-600 rounded-lg bg-blue-50'
@@ -228,18 +225,18 @@ function Game() {
         
         <div className='flex items-center justify-center h-20 rounded-b-2xl bg-blue-400'>
             <input 
-                className= {`w-4/6 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg ${disableInputs ? "bg-blue-200" : "bg-gray-50"}`}
+                className= {`sm:w-4/6 w-44 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg ${disableInputs ? "bg-blue-200" : "bg-gray-50"}`}
                 type="text" 
                 value={userInput} 
                 onChange = {(e) => setUserInput(e.target.value)}
                 disabled = {disableInputs}
                 />
             <button 
-                className = 'h-10 md:w-14 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' 
+                className = 'h-10 md:w-14 px-2 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' 
                 onClick={handleSubmit}
                 disabled = {disableInputs}> <SearchIcon/> </button>
             <button 
-                className = {`h-10 w-10 ml-5 border-2 border-gray-600 rounded-lg ${disableInputs ? "bg-gray-200" : "bg-yellow-200"}`}
+                className = {`h-10 w-10 md:ml-5 ml-3 border-2 border-gray-600 rounded-lg ${disableInputs ? "bg-gray-200" : "bg-yellow-200"}`}
                 disabled = {disableInputs} 
                 onClick = {fetchHint}>
                 <QuestionMarkIcon/> 

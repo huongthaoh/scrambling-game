@@ -29,3 +29,7 @@ content-type: application/json
 
 ### display score
 GET http://localhost:3000/api/word/score
+
+
+###
+GET https://api.dictionaryapi.dev/api/v2/entries/en/hello

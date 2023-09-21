@@ -20,14 +20,6 @@ function getCurWord() {
     return curWord;
 }
 
-// function verifyWord(scrWord) {
-//     if (scrWord.trim().toLowerCase() == curWord.trim().toLowerCase()) {
-//         ++score;
-//         return true;
-//     };
-//     return false;
-// }
-
 function setScore(s) {
     score = s;
 }
