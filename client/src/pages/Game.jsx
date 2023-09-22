@@ -110,14 +110,16 @@ function Game() {
     useEffect(() => {
         if (correct === true) {
             setTimeout(() => {
-                getNewWord();
+                // getNewWord();
                 setTimeout(() => {
                     setCorrect(null);
                     console.log(times);
                     if (times == timePerRound) {
                         setDisableInputs(true);
                         setEndRound(true);
-                    } 
+                    } else {
+                        getNewWord();
+                    }
                 }, 100); 
             }, 500);
             
