@@ -5,6 +5,8 @@
 ## sypnosis
 a scramble game! randomly retrieve words from a .csv file, scramble it and prompt user to guess. user decides how many turns they want to play. afterwards, display game statistics.
 
+**technology:** React, NodeJS, Express, tailwindcss
+
 ## setup
 
 ###clone this repository to your local machine
