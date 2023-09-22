@@ -223,9 +223,9 @@ function Game() {
 
         </div>  
         
-        <div className='flex items-center justify-center h-20 rounded-b-2xl bg-blue-400'>
+        <div className='flex items-center justify-center h-20 rounded-b-2xl px-5 bg-blue-400'>
             <input 
-                className= {`sm:w-4/6 w-44 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg ${disableInputs ? "bg-blue-200" : "bg-gray-50"}`}
+                className= {`w-4/6 h-10 px-4 border-2 border-gray-600 rounded-tl-lg rounded-bl-lg ${disableInputs ? "bg-blue-200" : "bg-gray-50"}`}
                 type="text" 
                 value={userInput} 
                 onChange = {(e) => setUserInput(e.target.value)}

@@ -13,7 +13,7 @@ export default {
        
         slide: 'slide 0.5s ease-in-out forwards',
 
-        scroll: 'shuffle 2s infinite steps(10)',
+        scroll: 'shuffle 1.5s infinite steps(10)',
       },
       keyframes: {
         shake: {

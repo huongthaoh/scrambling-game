@@ -1,11 +1,9 @@
 
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
-import CreateWordlist from './pages/CreateWordlist';
+
 import Game from './pages/Game';
 import GameOver from './pages/GameOver';
-
-
 import LandingPage from './pages/LandingPage';
 
 
@@ -14,7 +12,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  let text= "let's play ekreb"; //default
+  let text= "let's play ekreb"; 
   if (location.pathname === "/game") {
     text = "can you unscramble this word?"
   } else if (location.pathname === "/endGame") {
