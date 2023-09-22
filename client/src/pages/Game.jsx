@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
-import SearchIcon from '@mui/icons-material/Search';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
+
+import SearchIcon from "./Icons/search.png"
+import QuestionIcon from "./Icons/interrogation.png"
+import CloseIcon from "./Icons/cross.png"
 
 function Game() {
 
@@ -170,7 +171,9 @@ function Game() {
                     
                     <div className='w-full h-10 flex justify-between items-center px-3  bg-yellow-300 rounded-t-xl border-y-2 border-gray-600'>
                         <p className='font-semibold '>a definition of the word</p>
-                        <p className = "hover:cursor-pointer" onClick = {closeHint}>{< CloseIcon />}</p>
+                        <p className = "hover:cursor-pointer" onClick = {closeHint}>
+                            <img src={CloseIcon} alt="close hint" className='h-3 w-3'/>
+                        </p>
                     </div>
                     <p className='mx-3 my-2'>{hint}</p>
                     
@@ -234,14 +237,16 @@ function Game() {
                 disabled = {disableInputs}
                 />
             <button 
-                className = 'h-10 md:w-14 px-2 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' 
+                className = 'flex justify-center items-center h-10 md:w-14 w-12 px-2 border-y-2 border-r-2 border-gray-600 rounded-tr-lg rounded-br-lg bg-pink-400' 
                 onClick={handleSubmit}
-                disabled = {disableInputs}> <SearchIcon/> </button>
+                disabled = {disableInputs}>
+                <img src = {SearchIcon} className = "h-5 w-5"></img>
+            </button>
             <button 
-                className = {`h-10 w-10 md:ml-5 ml-3 border-2 border-gray-600 rounded-lg ${disableInputs ? "bg-gray-200" : "bg-yellow-200"}`}
+                className = {`flex justify-center items-center h-10 w-10 md:ml-5 ml-3 border-2 border-gray-600 rounded-lg ${disableInputs ? "bg-gray-200" : "bg-yellow-200"}`}
                 disabled = {disableInputs} 
                 onClick = {fetchHint}>
-                <QuestionMarkIcon/> 
+                <img src= {QuestionIcon} alt="question icon" className='h-5 w-5' />
             </button>
         </div>
 
