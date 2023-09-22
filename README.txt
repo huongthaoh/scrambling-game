@@ -11,11 +11,11 @@ React, NodeJS, Express, tailwindcss
 SETUP
 A. clone this repository to your local machine
 B. backend
-    1. navigate to backend directory: `cd backend`
+    1. navigate to backend directory: `cd api`
     2. install backend dependencies: `yarn install` or `npm install`
     3. start the backend server: `yarn start` or `npm start`
 C. frontend
-    1. navigate to the frontend director: `cd frontend` (`cd ..` as needed)
+    1. navigate to the frontend director: `cd client` (`cd ..` as needed)
     2. install frontend dependencies: `yarn install` or `npm install`
     3. start the frontend development server: `yarn dev` or `npm run dev`
 you should be able to access your web browser at http://localhost:5173

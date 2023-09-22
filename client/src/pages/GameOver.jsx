@@ -14,7 +14,6 @@ function GameOver() {
     
     useEffect(() => {
         displayResult();
-        
     }, []);
 
     const displayResult = async () => {

@@ -6,8 +6,6 @@ import Game from './pages/Game';
 import GameOver from './pages/GameOver';
 import LandingPage from './pages/LandingPage';
 
-
-
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
