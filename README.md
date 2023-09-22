@@ -11,15 +11,15 @@ a scramble game! randomly retrieve words from a .csv file, scramble it and promp
 
 ## setup
 
-###clone this repository to your local machine
+### clone this repository to your local machine
 
-###backend
+### backend
 
 1. navigate to backend directory: `cd backend`
 2. install backend dependencies: `yarn install` or `npm install`
 3. start the backend server: `yarn start` or `npm start`
 
-###frontend
+### frontend
 
 1. navigate to the frontend director: `cd frontend` (`cd ..` as needed)
 2. install frontend dependencies: `yarn install` or `npm install`
