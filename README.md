@@ -1,6 +1,7 @@
 # ekreb
 
 **name**: thao hoang
+
 **email**: thao.h.hoang@vanderbilt.edu
 
 ## sypnosis
@@ -43,6 +44,16 @@ NOTE: for debugging/testing, you can inspect element while playing the game to s
 i have ambitious plans to include more features, like a competitive play mode, wordlist-creating ability, and even an impossible-hint mechanism (retrieving definition but in russian, for instance). i finally decided against it as i want to really (hopefully) nail the basics, but i will probably realize those ideas after!
 additionally, i think with more experience, i will be able to improve my code's organization and scalability.
 
+
 ## reflection
 
 this project allows me to apply and build on my web-dev skills. i've thoroughly enjoyed the whole process, from designing the frontend (lots of watching css animation tutorials on ytb) to manipulating server-side's logic. i was able to challenge myself by experimenting with new tools like tailwindcss and vite, and by striving to write organized and maintainable code. i hope that when reviewing my project, Change++ will be able to see the effort i've put in, my strengths in web dev, and my commitment to grow as a programmer!
+
+## Preview
+<img width="800" alt="Screenshot 2024-02-07 at 11 30 13 PM" src="https://github.com/huongthaoh/scrambling-game/assets/121412317/401b3c1a-f5e7-40c5-a23e-f9c3cdf61516"> 
+<img width="800" alt="Screenshot 2024-02-07 at 11 34 27 PM" src="https://github.com/huongthaoh/scrambling-game/assets/121412317/2631ff71-cde8-4ba8-beb7-9b92cad320cc">
+<img width="800" alt="Screenshot 2024-02-07 at 11 31 18 PM" src="https://github.com/huongthaoh/scrambling-game/assets/121412317/56445e51-4bfc-48a0-baf8-c4522cb1c457">
+<img width="800" alt="Screenshot 2024-02-07 at 11 31 33 PM" src="https://github.com/huongthaoh/scrambling-game/assets/121412317/f536daca-ef91-4c59-b3ae-62a1ce06be27">
+
+
+
